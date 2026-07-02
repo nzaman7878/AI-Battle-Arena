@@ -67,7 +67,7 @@ export default function HistoryPage() {
               return (
                 <div key={battle._id} className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
                   <div 
-                    className="p-6 cursor-pointer flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+                    className="p-4 sm:p-6 cursor-pointer flex flex-col sm:flex-row sm:items-center justify-between gap-4"
                     onClick={() => setExpandedId(isExpanded ? null : battle._id)}
                   >
                     <div className="flex-1 min-w-0">
@@ -77,7 +77,7 @@ export default function HistoryPage() {
                       </h3>
                     </div>
                     
-                    <div className="flex items-center gap-4 shrinks-0">
+                    <div className="flex items-center justify-between sm:justify-end gap-4 shrink-0 mt-2 sm:mt-0">
                       <div className="flex items-center gap-3">
                         <div className="px-3 py-1 bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 rounded-full text-sm font-medium border border-emerald-200 dark:border-emerald-500/20">
                           S1: {battle.judge.solution_1_score}

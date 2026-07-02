@@ -61,6 +61,14 @@ export default function Navbar() {
                   <p className="text-sm font-medium text-zinc-900 dark:text-white truncate">{user.name}</p>
                   {user.email && <p className="text-xs text-zinc-500 dark:text-zinc-400 truncate mt-0.5">{user.email}</p>}
                 </div>
+                <div className="p-2 border-b border-zinc-100 dark:border-zinc-800 md:hidden">
+                  <Link to="/arena" onClick={() => setIsProfileOpen(false)} className="block w-full text-left px-3 py-2 text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-800 rounded-xl transition-colors">
+                    Arena
+                  </Link>
+                  <Link to="/history" onClick={() => setIsProfileOpen(false)} className="block w-full text-left px-3 py-2 text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-800 rounded-xl transition-colors">
+                    History
+                  </Link>
+                </div>
                 <div className="p-2">
                   <button
                     onClick={() => {

@@ -66,7 +66,7 @@ export default function ChatInterface() {
     <div className="flex flex-col h-screen bg-zinc-50 dark:bg-zinc-950 font-sans">
       <Navbar />
 
-      <main className="flex-1 overflow-y-auto scrollbar-hide px-4 md:px-8 py-8 w-full max-w-6xl mx-auto flex flex-col">
+      <main className="flex-1 overflow-y-auto scrollbar-hide px-4 md:px-8 py-4 md:py-8 w-full max-w-6xl mx-auto flex flex-col">
         {messages.length === 0 ? (
           <div className="flex-1 flex items-center justify-center">
             <div className="text-center">
@@ -98,7 +98,7 @@ export default function ChatInterface() {
             <div className="flex flex-col gap-8 my-8 px-4 w-full">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {[1, 2].map((i) => (
-                  <div key={i} className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-3xl p-8 shadow-sm flex flex-col">
+                  <div key={i} className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-sm flex flex-col">
                     <div className="h-4 bg-zinc-200 dark:bg-zinc-800 rounded w-1/4 mb-8 animate-pulse"></div>
                     <div className="space-y-4">
                       <div className="h-4 bg-zinc-200 dark:bg-zinc-800 rounded w-3/4 animate-pulse"></div>
@@ -116,7 +116,7 @@ export default function ChatInterface() {
         <div ref={endOfMessagesRef} />
       </main>
 
-      <div className="p-6 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-xl border-t border-zinc-200 dark:border-zinc-800">
+      <div className="p-4 sm:p-6 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-xl border-t border-zinc-200 dark:border-zinc-800">
         <div className="max-w-4xl mx-auto">
           <form onSubmit={handleSend} className="relative flex items-center group">
             <input
@@ -125,11 +125,11 @@ export default function ChatInterface() {
               onChange={(e) => setInputValue(e.target.value)}
               placeholder="Ask a coding question..."
               disabled={isLoading}
-              className="w-full bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-800 rounded-full py-4 pl-6 pr-16 focus:ring-2 focus:ring-blue-500 focus:outline-none placeholder-zinc-400 transition-all shadow-sm group-hover:shadow-md text-lg disabled:opacity-50"
+              className="w-full bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-800 rounded-full py-3 sm:py-4 pl-5 sm:pl-6 pr-14 sm:pr-16 focus:ring-2 focus:ring-blue-500 focus:outline-none placeholder-zinc-400 transition-all shadow-sm group-hover:shadow-md text-base sm:text-lg disabled:opacity-50"
             />
             <button
               type="submit"
-              className="absolute right-2 bg-blue-600 hover:bg-blue-700 text-white p-2.5 rounded-full transition-all flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed hover:scale-105 active:scale-95 shadow-md shadow-blue-500/20"
+              className="absolute right-1.5 sm:right-2 bg-blue-600 hover:bg-blue-700 text-white p-2 sm:p-2.5 rounded-full transition-all flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed hover:scale-105 active:scale-95 shadow-md shadow-blue-500/20"
               disabled={!inputValue.trim() || isLoading}
             >
               {isLoading ? (
