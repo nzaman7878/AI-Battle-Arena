@@ -48,4 +48,23 @@ router.get('/:id', requireAuth, async (req: AuthRequest, res) => {
   }
 });
 
+// Delete a battle by ID
+router.delete('/:id', requireAuth, async (req: AuthRequest, res) => {
+  try {
+    const battle = await Battle.findOneAndDelete({
+      _id: req.params.id,
+      userId: req.user?._id,
+    });
+
+    if (!battle) {
+      res.status(404).json({ message: 'Battle not found or unauthorized' });
+      return;
+    }
+
+    res.json({ message: 'Battle deleted successfully', id: battle._id });
+  } catch (error) {
+    res.status(500).json({ message: 'Error deleting battle', error });
+  }
+});
+
 export default router;

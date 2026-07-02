@@ -23,6 +23,20 @@ export default function HistoryPage() {
     fetchHistory();
   }, []);
 
+  const handleDelete = async (id, e) => {
+    e.stopPropagation();
+    if (!window.confirm("Are you sure you want to delete this battle history?")) return;
+    
+    try {
+      await axios.delete(`http://localhost:3000/api/battles/${id}`);
+      setBattles((prev) => prev.filter((b) => b._id !== id));
+      if (expandedId === id) setExpandedId(null);
+    } catch (error) {
+      console.error('Failed to delete battle', error);
+      alert('Failed to delete battle. Please try again.');
+    }
+  };
+
   if (loading) return <LoadingSpinner />;
 
   return (
@@ -72,11 +86,23 @@ export default function HistoryPage() {
                           S2: {battle.judge.solution_2_score}
                         </div>
                       </div>
-                      <button className="text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300 transition-colors">
-                        <svg className={`w-6 h-6 transform transition-transform ${isExpanded ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </button>
+
+                      <div className="flex items-center gap-1 border-l border-zinc-200 dark:border-zinc-800 pl-3 ml-1">
+                        <button 
+                          onClick={(e) => handleDelete(battle._id, e)}
+                          className="text-zinc-400 hover:text-red-500 dark:hover:text-red-400 transition-colors p-1.5 hover:bg-red-50 dark:hover:bg-red-500/10 rounded-full"
+                          title="Delete Battle"
+                        >
+                          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                          </svg>
+                        </button>
+                        <button className="text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300 transition-colors p-1.5 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-full">
+                          <svg className={`w-5 h-5 transform transition-transform ${isExpanded ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                          </svg>
+                        </button>
+                      </div>
                     </div>
                   </div>
 
